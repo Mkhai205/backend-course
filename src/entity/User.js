@@ -11,8 +11,12 @@ export const User = new EntitySchema({
         },
         name: {
             type: "varchar",
+            nullable: true,
         },
         email: {
+            type: "varchar",
+        },
+        password: {
             type: "varchar",
         },
         role: {

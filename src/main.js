@@ -1,7 +1,8 @@
 import express from "express";
-
+import config from "dotenv/config";
 import { requestLogger } from "./middleware/requestLogger.js";
 import userRouter from "./router/user.js";
+import authRouter from "./router/auth.js";
 import { AppDataSource } from "./database.js";
 
 const app = express();
@@ -21,7 +22,8 @@ app.get("/", async (req, res) => {
     res.status(200).json(data);
 });
 
-app.use(userRouter);
+app.use("/users", userRouter);
+app.use("/auth", authRouter);
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
