@@ -2,8 +2,15 @@ import express from "express";
 
 import { requestLogger } from "./middleware/requestLogger.js";
 import userRouter from "./router/user.js";
+import { AppDataSource } from "./database.js";
 
 const app = express();
+
+AppDataSource.initialize()
+    .then(() => {
+        console.log("✅ Kết nối Database PostgreSQL thành công!");
+    })
+    .catch((error) => console.error("❌ Lỗi kết nối DB:", error));
 
 app.use(express.json()); // Middleware để parse JSON từ body của request
 

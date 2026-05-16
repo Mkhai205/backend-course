@@ -19,7 +19,7 @@ router.get("/users/", checkApikey, getAllUsers);
 router.get("/users/:id", checkApikey, getUserById);
 
 // 3. CREATE (POST): Thêm 1 user mới
-router.post("/users/", checkApikey, validateUserData, createUser);
+router.post("/users/", checkApikey, createUser);
 
 // 4. UPDATE (PUT): Cập nhật thông tin user
 router.put("/users/:id", updateUser);
