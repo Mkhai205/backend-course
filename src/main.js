@@ -1,5 +1,6 @@
 import express from "express";
 import config from "dotenv/config";
+import cookieParser from "cookie-parser";
 import { requestLogger } from "./middleware/requestLogger.js";
 import userRouter from "./router/user.js";
 import authRouter from "./router/auth.js";
@@ -14,6 +15,7 @@ AppDataSource.initialize()
     .catch((error) => console.error("❌ Lỗi kết nối DB:", error));
 
 app.use(express.json()); // Middleware để parse JSON từ body của request
+app.use(cookieParser()); // Middleware để parse cookie từ request
 
 app.use(requestLogger);
 

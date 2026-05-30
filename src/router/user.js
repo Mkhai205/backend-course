@@ -9,12 +9,12 @@ import {
 import { readData } from "../utils/file.utils.js";
 import { checkApikey } from "../middleware/checkApikey.js";
 import { validateUserData } from "../middleware/validateDataUser.js";
-import { verifyAdmin, verifyToken } from "../middleware/verifyToken.js";
+import { Role, verifyRole, verifyToken } from "../middleware/verifyToken.js";
 
 const router = express.Router();
 
 // 1. READ ALL (GET): Lấy danh sách tất cả user
-router.get("/", verifyToken, verifyAdmin, getAllUsers);
+router.get("/", verifyToken, verifyRole([Role.ADMIN, Role.MANAGER]), getAllUsers);
 
 // 2. READ ONE (GET): Lấy thông tin 1 user dựa vào ID
 router.get("/:id", checkApikey, getUserById);
